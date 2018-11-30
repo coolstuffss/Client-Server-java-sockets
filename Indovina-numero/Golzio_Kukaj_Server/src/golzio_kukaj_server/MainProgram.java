@@ -26,23 +26,22 @@ public class MainProgram {
         System.out.println("Client Connesso...");
         
         while(i < tentativi && !numeroIndovinato){
-            numero = (int) Math.floor(Math.random() * 11);
+            //numero = (int) Math.floor(Math.random() * 11);
             int ricevuto = serversocket.riceviNumero();
+            String s="";
             if(ricevuto == numero){
                 serversocket.comunica("0");
                 System.out.println("Indovinato");
                 numeroIndovinato = true;
             } else {
-                if(ricevuto > numero) serversocket.comunica("2");//maggiore
-                if(ricevuto < numero) serversocket.comunica("1");//minore
-                if(serversocket.riceviNumero() != numero && i == (tentativi-1)) serversocket.comunica("3");//fine, non indovinato il numero
-                
+                if(ricevuto > numero) s="2";//maggiore
+                if(ricevuto < numero) s="1";//minore
+                serversocket.comunica(s);
                 System.out.println("Non indovinato");
                 numeroIndovinato = false;
                 i++;
             }
         }
-        serversocket.comunica("Tentativi finiti!");
         serversocket.chiudiConnessione();
     }
     
