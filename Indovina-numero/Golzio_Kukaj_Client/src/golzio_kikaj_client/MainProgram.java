@@ -43,9 +43,6 @@ public class MainProgram {
                 case "2": System.out.println("Il numero e' minore");
                 uscita= false;
                     break;
-                case "3": System.out.println("Numero non ndovinato");
-                uscita=false;
-                    break;
             }
             
         }while(!uscita);
